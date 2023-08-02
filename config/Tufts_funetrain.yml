@@ -1,0 +1,30 @@
+MODEL: LightCNN-29v4
+LR: 0.003
+MOENTUM: 0.9
+CUDA: True
+WEIGHT_DECAY: 0.0001
+ROOT_PATH: datasets/Tufts
+BATH_SIZE: 128
+WORKERS: 1
+T: 0.01
+ALPHA: 0.7
+# BETA: 0.00006
+DROPOUT_RATE: [0.8,0.7,0.6,0.9]
+MAX_DROPOUT: [0.98,0.98,0.98,0.98]
+EPOCHS: 100
+TAU: 0.4
+DATASET: Tufts
+PRE_PROTOCOL: ['label']
+PROTOCOLS: ['label','attack_imglist','imglist']
+UNLABEL: ['unlabel']
+OUTPUT_PATH: logs/Tufts/funetrain/
+VAL_PATH: config/Tufts_val.yml
+VAL_FREQ: 3
+PRINT_FREQ: 100
+WEIGHTS: logs/Tufts/train/Tufts.pth.tar
+PERTRAIN: False
+ATTACK_HEAD: attack
+
+ATTACK_PATH: datasets/Tufts/Protocol/attack_imglist.txt
+UNLABEL_PROTOCOL: datasets/Tufts/Protocol/imglist.txt
+ADJUST_EPOCH: 20

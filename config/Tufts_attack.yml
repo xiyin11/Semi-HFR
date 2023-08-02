@@ -1,0 +1,26 @@
+LR: 0.005
+CLASS_LR: 0.01
+MOENTUM: 0.9
+WEIGHT_DECAY: 0.0001
+ROOT_PATH: datasets/Tufts
+BATH_SIZE: 64
+WORKERS: 1
+EPOCHS: 35
+CLASS_EPOCH: 5
+DATASET: Tufts
+PROTOCOLS: ['classifier',]
+OUTPUT_PATH: logs/Tufts/attack/
+TEST: ['test']
+UNLABEL: ['train']
+PRINT_FREQ: 25
+VAL_FREQ: 5
+WEIGHTS: logs/Tufts/Tufts.pth.tar
+ATTACK_PATH: 'datasets/Tufts/attack'
+
+STEP_SIZE: 0.007
+EPSILON: 0.031
+NUM_STEPS: 10
+RAND_INIT: True
+OMEGA: 0.001
+DYNAMICTAU: True
+BETA: 0.5
