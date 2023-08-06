@@ -1,6 +1,8 @@
 # Modality-agnostic Augmented Multi-Collaboration Representation for Semi-supervised Heterogeneous Face Recognition
 
-The zip file contains source codes we use in our paper for testing the Rank-1 accuracy on LAMP-HQ database.
+This repo contains the source code for our ACM MM'23 work **Modality-agnostic Augmented Multi-Collaboration Representation for Semi-supervised Heterogeneous Face Recognition**. In the following is an instruction to use the code to train and evaluate our model.
+
+![farmework](images/faemework.png)
 
 ## Dependencies
 
@@ -26,11 +28,61 @@ For the convenience of comparison, we choose the Thermal-VIS dataset, which cont
 
 ### Prepare Database
 
-1.Download face dataset such as CASIA NIR-VIS 2.0, LAMP-HQ and Tufts Face.
+1.Download face dataset such as CASIA NIR-VIS 2.0, LAMP-HQ and Tufts Face to the `./datasets` folder.
 
-2.You can use RetinaFace for face detection and alignment, then crop face images to 128*128. For more information, please refer to: https://github.com/serengil/retinaface
+2.You can use RetinaFace for face detection and alignment, then crop face images to **128*128**. For more information, please refer to: https://github.com/serengil/retinaface.
 
-### Test the model
+3.Download the pre-trained weights for the LightCNN-29v4 model to the `./utils/weight` folder. You can obtain the model from: https://github.com/AlfredXiangWu/LightCNN.
 
-1. run run_test.sh
+### Prepare Protocol
 
+ou can set up your own training and testing protocols, place them in `./datasets/Tufts/Protocol`, and specify the protocol in the yaml file to use it during training.
+
+### Run the code
+
+Please enter the main folder, and run
+```bash
+python train.py --c ./config/Tufts.yml
+```
+
+Then, you can modify the `WEIGHTS` in the `./config/Tufts_attack.yml` file to specify a suitable model weight (the checkpoint file is saved in `./log/Tufts`) to obtain the MAA augmented images under that weight by running the code:
+```bash
+python attack.py --c ./config/Tufts_attack.yml
+```
+
+Finally, you can fine-tune the model to achieve the best performance by running the code:
+```bash
+python train.py --c ./config/Tufts_funetrain.yml
+```
+
+### Main results
+
+LAMP-HQ:
+|   Model | Labeled ratio | Rank-1 | VR@FAR=1%   | VR@FAR=0.1%| VR@FAR=0.01% | 
+| :------- | :----: | :---: | :---: |:---: | :---: | 
+| LightCNN| full | 95.8% | 95.5% | 82.4% | 62.5% |
+| DVG | full |98.3% |    99.0%    |    96.4%  |    88.6%  | 
+| FSIAD |full | 98.7% |    99.2%    |    97.3%  |    92.6%  | 
+| Ours | 3/5 |99.2% |    99.4%    |    99.0%  |    97.0%  |
+
+CASIA NIR-VIS 2.0:
+|   Model | Labeled ratio | Rank-1 | VR@FAR=1%   | VR@FAR=0.1%|
+| :------- | :----: | :---: | :---: |:---: | 
+| LightCNN| full | 96.7% | 94.8% | 88.5% |
+| DVG | full |99.8% |    99.8%    |    98.8%  |
+| FSIAD |full | 99.9% |    99.9%    |    99.2%  |
+| Ours | 3/5 |99.9% |    99.9%    |    99.8%  |
+
+Tufts Face:
+|   Model | Labeled ratio | AUC | EER  | VR@FAR=1%|
+| :------- | :----: | :---: | :---: |:---: | 
+| DA-GAN | full | 75.2% | 31.1% | 10.4% |
+| MMTN |full | 92.6% |    15.7%    |  27.8%  |  
+| MixMatch |3/5 | 84.8% |    23.6%    |    20.8%  |
+| FixMatch |3/5 | 95.7% |    11.2%    |    35.1%  |
+| Ours | 3/5 |98.0% |    6.3%    |    63.3%  |
+
+## References
+
+[LightCNN](https://github.com/AlfredXiangWu/LightCNN)，
+[RetinaFace](https://github.com/serengil/retinaface).

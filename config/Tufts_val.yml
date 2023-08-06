@@ -1,6 +1,6 @@
 ROOT_PATH: datasets/Tufts
 DATASET: Tufts
-GALLERY: Protocol/gallery_small.txt
+GALLERY: Protocol/gallery.txt
 PROBE: Protocol/probe.txt
 WEIGHTS: logs/Tufts/train/Tufts.pth.tar
 OUTPUT_PATH: logs/Tufts/
