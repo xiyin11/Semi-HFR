@@ -1,6 +1,6 @@
 # Modality-agnostic Augmented Multi-Collaboration Representation for Semi-supervised Heterogeneous Face Recognition
 
-This repo contains the source code for our ACM MM'23 work **Modality-agnostic Augmented Multi-Collaboration Representation for Semi-supervised Heterogeneous Face Recognition**. In the following is an instruction to use the code to train and evaluate our model.
+This repo contains the source code for our ACM MM'23 work **Modality-agnostic Augmented Multi-Collaboration Representation for Semi-supervised Heterogenous Face Recognition**. In the following is an instruction to use the code to train and evaluate our model.
 
 ![farmework](images/faemework.png)
 
@@ -11,7 +11,7 @@ This repo contains the source code for our ACM MM'23 work **Modality-agnostic Au
 
 ## Datasets
 
-[A Large-Scale Multi-Pose High-Quality Database (LAMP-HQ)](https://arxiv.org/abs/1912.07809) is a large-scale NIR-VIS face database with **56,788** NIR and **16,828** VIS images of **573** subjects. 
+[LAMP-HQ dataset](https://arxiv.org/abs/1912.07809) is a large-scale NIR-VIS face database with **56,788** NIR and **16,828** VIS images of **573** subjects. 
 
 For each fold, the training set consists of almost 50% images from **300** subjects in the database. For the testing set, we select the rest **273** subjects, each with one VIS image and about **100** NIR images.
 
@@ -40,7 +40,7 @@ ou can set up your own training and testing protocols, place them in `./datasets
 
 ### Run the code
 
-Please enter the main folder, and run
+Please enter the main folder, and run:
 ```bash
 python train.py --c ./config/Tufts.yml
 ```
@@ -55,7 +55,7 @@ Finally, you can fine-tune the model to achieve the best performance by running 
 python train.py --c ./config/Tufts_funetrain.yml
 ```
 
-### Main results
+## Main results
 
 LAMP-HQ:
 |   Model | Labeled ratio | Rank-1 | VR@FAR=1%   | VR@FAR=0.1%| VR@FAR=0.01% | 
@@ -81,6 +81,19 @@ Tufts Face:
 | MixMatch |3/5 | 84.8% |    23.6%    |    20.8%  |
 | FixMatch |3/5 | 95.7% |    11.2%    |    35.1%  |
 | Ours | 3/5 |98.0% |    6.3%    |    63.3%  |
+
+## Citation
+
+If you find this code useful in your research, please consider citing us:
+
+```
+@inproceedings{
+  title={Modality-agnostic Augmented Multi-Collaboration Representation for Semi-supervised Heterogenous Face Recognition},
+  author={Decheng Liu, Weizhao Yang, Chunlei Peng, Nannan Wang, Ruimin Hu, Xinbo Gao},
+  booktitle={Proceedings of the 31th ACM International Conference on Multimedia},
+  year={2023}
+}
+```
 
 ## References
 
