@@ -82,7 +82,7 @@ Tufts Face:
 | FixMatch |3/5 | 95.7% |    11.2%    |    35.1%  |
 | Ours | 3/5 |98.0% |    6.3%    |    63.3%  |
 
-You can download pre trained model weights from [google drive](https://drive.google.com/drive/folders/1AImqhaASdQaFLjRCJth7RIWWx3OZ_lns?usp=sharing)
+You can download fold-1 pre-trained model weights from [google drive](https://drive.google.com/drive/folders/1AImqhaASdQaFLjRCJth7RIWWx3OZ_lns?usp=sharing).
 
 ## Citation
 
